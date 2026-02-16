@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { searchMovies } from "../api";
+import { searchMovies } from "../API";
 import MovieCard from "../components/moviecard";
 
 const Home = () => {
