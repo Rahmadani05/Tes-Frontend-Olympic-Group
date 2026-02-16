@@ -1,9 +1,9 @@
 const API_KEY = '2ecd8fe0'; //API Key
 const BASE_URL = 'https://www.omdbapi.com/';
 
-export const searchMovies = async (keyword, type) => {
+export const searchMovies = async (keyword, type, page = 1) => {
   try {
-    const response = await fetch(`${BASE_URL}?apikey=${API_KEY}&s=${keyword}&type=${type}`);
+    const response = await fetch(`${BASE_URL}?apikey=${API_KEY}&s=${keyword}&type=${type}&page=${page}`);
     const data = await response.json();
     return data.Search || [];
   } catch (error) {

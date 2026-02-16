@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { searchMovies } from "../api";
 import MovieCard from "../components/moviecard";
 
@@ -15,6 +15,8 @@ const Home = () => {
 
     const [loading, setLoading] = useState(false);
 
+    const [page, setPage] = useState(1);
+
     // Jika ada data di storage, anggap sudah pernah search
     const [hasSearched, setHasSearched] = useState(() => {
         return sessionStorage.getItem("lastKeyword") ? true : false;
@@ -25,23 +27,50 @@ const Home = () => {
         if (!keyword) return;
 
         setLoading(true);
-        setHasSearched(true);
+        setPage(1); // Reset page jadi 1 setiap search baru
+        setMovies([]);
 
-        // Request API...
+        // Fetch Page 1
         const [seriesData, moviesData] = await Promise.all([
-            searchMovies(keyword, 'series'),
-            searchMovies(keyword, 'movie')
+            searchMovies(keyword, 'series', 1),
+            searchMovies(keyword, 'movie', 1)
         ]);
 
         setSeries(seriesData);
         setMovies(moviesData);
         setLoading(false);
 
-        // 2. TAMBAHKAN BAGIAN INI: Simpan ke sessionStorage agar tidak hilang
+        //Simpma search judul ke Session Storage
         sessionStorage.setItem('lastKeyword', keyword);
         sessionStorage.setItem('lastSeries', JSON.stringify(seriesData));
         sessionStorage.setItem('lastMovies', JSON.stringify(moviesData));
     };
+
+    //Infinite scroll
+    const handleScroll = () => {
+        if (window.innerHeight + document.documentElement.scrollTop + 1 >= document.documentElement.scrollHeight) {
+            // Jika user sudah mentok bawah, load page berikutnya
+            setPage(prev => prev + 1);
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    // Efek samping: Jika page bertambah, ambil data baru (khusus Movie)
+    useEffect(() => {
+        if (page > 1 && keyword) {
+            const loadMore = async () => {
+                const newMovies = await searchMovies(keyword, 'movie', page);
+                if (newMovies.length > 0) {
+                    setMovies(prev => [...prev, ...newMovies]); // Gabungkan data lama + baru
+                }
+            };
+            loadMore();
+        }
+    }, [page]);
 
     return (
         <div className="min-h-screen bg-white">

@@ -13,7 +13,6 @@ export default {
           light: '#4196CF',
           yellow: '#ECBD00',
         },
-        // Black & White tidak perlu ditulis jika murni hitam/putih
       },
       fontFamily: {
         ace: ['"Ace Sans"', 'sans-serif'],
