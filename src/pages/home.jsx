@@ -115,7 +115,7 @@ const Home = () => {
                             </h2>
                         </div>
                         {/* Slider Horizontal menggunakan CSS Snap */}
-                        <div className="grid grid-rows-2 grid-flow-col gap-4 overflow-x-auto pb-4 snap-x scrollbar-hide auto-cols-[80%] md:auto-cols-[45%]">
+                        <div className="grid grid-rows-2 grid-flow-col gap-4 overflow-x-auto pb-4 snap-x scrollbar-hide auto-cols-[100%] md:auto-cols-[49%]">
                             {series.map((item) => (
                                 <div key={item.imdbID} className="snap-center h-full">
                                     {" "}
@@ -137,7 +137,7 @@ const Home = () => {
                             </h2>
                         </div>
                         {/* Grid: Mobile 1 kolom, Desktop 3 kolom */}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 item-starts">
                             {movies.map((item) => (
                                 <MovieCard key={item.imdbID} movie={item} />
                             ))}
