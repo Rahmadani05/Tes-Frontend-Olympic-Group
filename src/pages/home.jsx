@@ -17,7 +17,6 @@ const Home = () => {
 
     const [page, setPage] = useState(1);
 
-    // Jika ada data di storage, anggap sudah pernah search
     const [hasSearched, setHasSearched] = useState(() => {
         return sessionStorage.getItem("lastKeyword") ? true : false;
     });
@@ -49,7 +48,6 @@ const Home = () => {
     //Infinite scroll
     const handleScroll = () => {
         if (window.innerHeight + document.documentElement.scrollTop + 1 >= document.documentElement.scrollHeight) {
-            // Jika user sudah mentok bawah, load page berikutnya
             setPage(prev => prev + 1);
         }
     };
@@ -59,13 +57,12 @@ const Home = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Efek samping: Jika page bertambah, ambil data baru (khusus Movie)
     useEffect(() => {
         if (page > 1 && keyword) {
             const loadMore = async () => {
                 const newMovies = await searchMovies(keyword, 'movie', page);
                 if (newMovies.length > 0) {
-                    setMovies(prev => [...prev, ...newMovies]); // Gabungkan data lama + baru
+                    setMovies(prev => [...prev, ...newMovies]);
                 }
             };
             loadMore();
@@ -118,8 +115,6 @@ const Home = () => {
                         <div className="grid grid-rows-2 grid-flow-col gap-4 overflow-x-auto pb-4 snap-x scrollbar-hide auto-cols-[100%] md:auto-cols-[49%]">
                             {series.map((item) => (
                                 <div key={item.imdbID} className="snap-center h-full">
-                                    {" "}
-                                    {/* Pastikan ada h-full */}
                                     <MovieCard movie={item} />
                                 </div>
                             ))}

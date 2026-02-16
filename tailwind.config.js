@@ -7,7 +7,6 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Cukup definisikan warna custom saja
         primary: {
           dark: '#044682',
           light: '#4196CF',

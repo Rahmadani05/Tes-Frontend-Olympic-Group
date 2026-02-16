@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Mendaftarkan Font dari folder public/fonts */
 @font-face {
   font-family: 'Ace Sans';
   src: url('/fonts/AceSans-FREE.otf') format('truetype');

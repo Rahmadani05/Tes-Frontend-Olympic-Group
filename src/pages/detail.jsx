@@ -20,7 +20,7 @@ const Detail = () => {
                     <title>{movie.Title} - MovieDB</title>
                     <meta name="description" content={movie.Plot} />
 
-                    {/* OpenGraph untuk Facebook/WhatsApp/LinkedIn */}
+                    {/* OpenGraph */}
                     <meta property="og:title" content={movie.Title} />
                     <meta property="og:description" content={`Rating: ${movie.imdbRating} - ${movie.Plot}`} />
                     <meta property="og:image" content={movie.Poster} />
