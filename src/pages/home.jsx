@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { searchMovies } from "../API";
-import MovieCard from "../components/moviecard";
+import { searchMovies } from "../API.js";
+import MovieCard from "../components/moviecard.jsx";
 
 const Home = () => {
     const [keyword, setKeyword] = useState(
