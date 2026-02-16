@@ -5,14 +5,14 @@
 /* Mendaftarkan Font dari folder public/fonts */
 @font-face {
   font-family: 'Ace Sans';
-  src: url('/fonts/AceSans-Bold.ttf') format('truetype');
+  src: url('/fonts/AceSans-FREE.otf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Fundamental Brigade';
-  src: url('/fonts/FundamentalBrigade-Regular.ttf') format('truetype');
+  src: url('/fonts/Fundamental Brigade.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
