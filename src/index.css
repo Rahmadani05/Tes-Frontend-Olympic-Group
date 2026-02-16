@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Mendaftarkan Font dari folder public/fonts */
+@font-face {
+  font-family: 'Ace Sans';
+  src: url('/fonts/AceSans-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Fundamental Brigade';
+  src: url('/fonts/FundamentalBrigade-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Default Styles */
+body {
+  @apply bg-gray-100 font-brigade text-black;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-ace;
+}
